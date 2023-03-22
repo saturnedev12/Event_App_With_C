@@ -1,0 +1,18 @@
+{
+    "files.associations": {
+        "ios": "c",
+        "gtk.h": "c",
+        "initialisation.h": "c",
+        "create_menu.h": "c",
+        "get_user_data.h": "c",
+        "on_users_menu_selected.h": "c",
+        "on_users_menu_selected.H": "cpp",
+        "ajouter_user.h": "c",
+        "get_even_data.h": "c",
+        "mysql.h": "c",
+        "on_event_menu_selected.h": "c",
+        "run_query.h": "c",
+        "unistd.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
