@@ -1,19 +1,59 @@
 {
     "configurations": [
         {
-            "name": "Mac",
+            "name": "macOS",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/usr/local/Cellar/gtk+3/3.24.37/include/gtk-3.0"
+                "/usr/local/include/gtk-3.0",
+                "/usr/local/include/glib-2.0",
+                "/usr/local/lib/glib-2.0/include",
+                "/usr/local/Cellar/pango/1.50.14/include/pango-1.0",
+                "/usr/local/Cellar/harfbuzz/7.1.0/include/harfbuzz",
+                "/usr/local/Cellar/cairo/1.16.0_5/include/cairo",
+                "/usr/local/Cellar/gdk-pixbuf/2.42.10/include/gdk-pixbuf-2.0",
+                "/usr/local/Cellar/atk/2.38.0/include/atk-1.0"
             ],
-            "defines": [],
-            "macFrameworkPath": [
-                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
+            "defines": [
+                "DEBUG",
+                "_DEBUG",
+                "G_DISABLE_CAST_CHECKS",
+                "GDK_DISABLE_DEPRECATED",
+                "GTK_DISABLE_DEPRECATED"
             ],
-            "compilerPath": "/usr/bin/clang",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "macos-clang-x64"
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "gcc-x64",
+            "compilerArgs": [
+                "-Wall",
+                "-g",
+                "-pthread",
+                "-I/usr/local/include/gtk-3.0",
+                "-I/usr/local/include/glib-2.0",
+                "-I/usr/local/lib/glib-2.0/include",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-L/usr/local/lib",
+                "-L/usr/X11/lib",
+                "-lgtk-3",
+                "-lgdk-3",
+                "-latk-1.0",
+                "-lgio-2.0",
+                "-lpangoft2-1.0",
+                "-lpango-1.0",
+                "-lgobject-2.0",
+                "-lglib-2.0",
+                "-lcairo",
+                "-lpixman-1",
+                "-lfontconfig",
+                "-lfreetype",
+                "-lharfbuzz",
+                "-lexpat",
+                "-lpng16",
+                "-lz",
+                "-lm"
+            ]
         }
     ],
     "version": 4

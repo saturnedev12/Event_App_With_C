@@ -17,7 +17,8 @@
         "get_ticket_data.h": "c",
         "on_ticket_menu_selected.h": "c",
         "ajouter_menu.h": "c",
-        "global.h": "c"
+        "global.h": "c",
+        "ajouter_even.h": "c"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "enabled"
 }
