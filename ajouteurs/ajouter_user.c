@@ -67,7 +67,7 @@ void ajouter_user(GtkWidget *widget, gpointer data)
         g_print("Variable 1: %s\n", var1);
         g_print("Variable 2: %s\n", var2);
 
-        snprintf(script, 200, "INSERT INTO users (noms, age) VALUES ('%s', '%s');", var1, var2);
+        snprintf(script, 200, "INSERT INTO users (noms, age) VALUES (\"%s\", \"%s\");", var1, var2);
         printf("%s\n", script);
         if (mysql_query(con, script))
         {

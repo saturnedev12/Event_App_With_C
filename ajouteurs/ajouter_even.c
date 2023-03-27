@@ -87,7 +87,7 @@ void ajouter_even(GtkWidget *widget, gpointer data)
         g_print("Variable 3: %s\n", var3);
         g_print("Variable 4: %s\n", var4);
         g_print("Variable 5: %s\n", var5);
-        snprintf(script, 200, "INSERT INTO evenement (titre, descriptions, places, priceTicket, dataTime) VALUES ('%s', '%s', %s, %s,'%s');", var1, var2, var3, var4, var5);
+        snprintf(script, 200, "INSERT INTO evenement (titre, descriptions, places, priceTicket, dataTime) VALUES (\"%s\", \"%s\", %s, %s,\"%s\");", var1, var2, var3, var4, var5);
         printf("%s\n", script);
         if (mysql_query(con, script))
         {
