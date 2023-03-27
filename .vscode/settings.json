@@ -12,7 +12,12 @@
         "mysql.h": "c",
         "on_event_menu_selected.h": "c",
         "run_query.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "ajouter_ticket.h": "c",
+        "get_ticket_data.h": "c",
+        "on_ticket_menu_selected.h": "c",
+        "ajouter_menu.h": "c",
+        "global.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

@@ -6,7 +6,9 @@
 #include "../headers/initialisation.h"
 #include "../headers/ajouter_user.h"
 #include "../headers/run_query.h"
-
+#include "../headers/on_users_menu_selected.h"
+#include "../headers/global.h"
+// TODO ajouter telephone
 void ajouter_user(GtkWidget *widget, gpointer data)
 {
     // MYSQL *con = (MYSQL *)data;
@@ -23,7 +25,7 @@ void ajouter_user(GtkWidget *widget, gpointer data)
     }
     initialisation(con);
     /* Create the dialog */
-    dialog = gtk_dialog_new_with_buttons("Ajouter un evenement",
+    dialog = gtk_dialog_new_with_buttons("Ajouter un Utilisateur",
                                          GTK_WINDOW(data),
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                          "OK",
@@ -76,8 +78,10 @@ void ajouter_user(GtkWidget *widget, gpointer data)
         /* Free the memory */
         g_free(var1);
         g_free(var2);
+        on_users_menu_selected(NULL, GTK_WINDOW(box));
     }
 
+    /* Destroy the dialog */
     /* Destroy the dialog */
     mysql_close(con);
     gtk_widget_destroy(dialog);

@@ -10,19 +10,19 @@ typedef struct
     /* data */
     int id;
     int idEvent;
-    int idClient;
-    char *date;
+    char *description;
+    int price;
 
 } Evenement;
 
 // Fonction pour récupérer les données de la base de données et les ranger dans un tableau de données GTK
-void get_tickets_data(MYSQL *conn, GtkListStore *store)
+void get_menu_data(MYSQL *conn, GtkListStore *store)
 {
     MYSQL_RES *res;
     MYSQL_ROW row;
 
     // Requête SQL pour récupérer les données de la base de données
-    mysql_query(conn, "SELECT * FROM tickets");
+    mysql_query(conn, "SELECT * FROM menuEvent");
 
     res = mysql_use_result(conn);
 
@@ -32,12 +32,12 @@ void get_tickets_data(MYSQL *conn, GtkListStore *store)
         Evenement event;
         event.id = atoi(row[0]);
         event.idEvent = atoi(row[1]);
-        event.idClient = atoi(row[2]);
-        event.date = row[3];
+        event.description = row[2];
+        event.price = atoi(row[3]);
 
         GtkTreeIter iter;
         gtk_list_store_append(store, &iter);
-        gtk_list_store_set(store, &iter, 0, event.id, 1, event.idEvent, 2, event.idClient, 3, event.date, -1);
+        gtk_list_store_set(store, &iter, 0, event.id, 1, event.idEvent, 2, event.description, 3, event.price, -1);
     }
 
     mysql_free_result(res);

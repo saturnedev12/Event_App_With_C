@@ -1,18 +1,72 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <mysql/mysql.h>
 #include <gtk/gtk.h>
+
 #include "../headers/get_even_data.h"
 #include "../headers/on_event_menu_selected.h"
 #include "../headers/ajouter_even.h"
 #include "../headers/initialisation.h"
+typedef struct
+{
+    /* data */
+    char *date;
+    int nb;
+} Statis;
 void run_r_script()
 {
-    char *script_file = "Rscript -e \" curve(sin(x), xlim = c(0, 2 * pi), main = 'Ma courbe', xlab = 'Variable X', ylab = 'Variable Y')\"";
-    char cmd[3000];
-    sprintf(cmd, "Rscript %s", script_file);
-    system(cmd);
+    MYSQL *con = mysql_init(NULL);
+    if (con == NULL)
+    {
+        fprintf(stderr, "%s\n", mysql_error(con));
+        exit(1);
+    }
+    initialisation(con);
+    // SELECT dataTime, COUNT(id) FROM evenement GROUP BY dataTime;
+    FILE *fp;
+    MYSQL_RES *res;
+    MYSQL_ROW row;
+
+    // Requête SQL pour récupérer les données de la base de données
+    mysql_query(con, "SELECT dataTime, COUNT(id) FROM evenement GROUP BY dataTime;");
+
+    res = mysql_use_result(con);
+    fp = fopen("toto.txt", "w");
+
+    // Vérifier si le fichier est ouvert avec succès
+    if (fp == NULL)
+    {
+        printf("Erreur : impossible d'ouvrir le fichier\n");
+        exit(1);
+    }
+
+    // Boucle pour parcourir les résultats de la requête et les stocker dans le tableau de données GTK
+    while ((row = mysql_fetch_row(res)) != NULL)
+    {
+
+        printf("%s\n", row[0]);
+        fprintf(fp, "%s,%s\n", row[0], row[1]);
+        // Statis statis;
+        // statis.date = row[0];
+        // statis.nb = atoi(row[1]);
+        // printf("%s,%s\n", stat.date, stat.nb);
+        // fprintf(fp, "%s,%s\n", stat.date, stat.nb);
+    }
+
+    mysql_free_result(res);
+    mysql_close(con);
+
+    // for (int i = 0; i < 10; i++)
+    // {
+    //     fprintf(fp, "%d\n", i);
+    //     /* code */
+    // }
+    fclose(fp);
+
+    // sprintf(cmd, "Rscript %s", script_file);
+    system("python3 stat_1.py");
 }
 
 void on_event_menu_selected(GtkMenuItem *item, gpointer user_data)
@@ -69,38 +123,23 @@ void on_event_menu_selected(GtkMenuItem *item, gpointer user_data)
     // Création de la boîte à outils
     toolbar = gtk_toolbar_new();
     gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
-    gtk_container_set_border_width(GTK_CONTAINER(toolbar), 5);
     gtk_toolbar_set_icon_size(GTK_TOOLBAR(toolbar), GTK_ICON_SIZE_SMALL_TOOLBAR);
 
     // Ajout des stocks de boutons à la boîte à outils
     GtkToolItem *new_tb = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), new_tb, -1);
 
-    GtkToolItem *open_tb = gtk_tool_button_new_from_stock(GTK_STOCK_OPEN);
+    GtkToolItem *del_tb = gtk_tool_button_new_from_stock(GTK_STOCK_DELETE);
+    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), del_tb, -1);
+
+    GtkToolItem *open_tb = gtk_tool_button_new_from_stock(GTK_STOCK_FIND);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), open_tb, -1);
 
-    GtkToolItem *save_tb = gtk_tool_button_new_from_stock(GTK_STOCK_DELETE);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), save_tb, -1);
-
-    GtkToolItem *sep = gtk_separator_tool_item_new();
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), sep, -1);
-
-    GtkToolItem *cut_tb = gtk_tool_button_new_from_stock(GTK_STOCK_CUT);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), cut_tb, -1);
-
-    GtkToolItem *copy_tb = gtk_tool_button_new_from_stock(GTK_STOCK_COPY);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), copy_tb, -1);
-
-    GtkToolItem *paste_tb = gtk_tool_button_new_from_stock(GTK_STOCK_PASTE);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), paste_tb, -1);
-
     // Ajout d'un label pour chaque bouton
-    gtk_tool_item_set_tooltip_text(new_tb, "Nouveau");
-    gtk_tool_item_set_tooltip_text(open_tb, "Ouvrir");
-    gtk_tool_item_set_tooltip_text(save_tb, "Enregistrer");
-    gtk_tool_item_set_tooltip_text(cut_tb, "Couper");
-    gtk_tool_item_set_tooltip_text(copy_tb, "Copier");
-    gtk_tool_item_set_tooltip_text(paste_tb, "Coller");
+    gtk_tool_item_set_tooltip_text(new_tb, "Creer");
+    gtk_tool_item_set_tooltip_text(del_tb, "Supprimer");
+    gtk_tool_item_set_tooltip_text(open_tb, "Statistique");
+
     g_signal_connect(G_OBJECT(new_tb), "clicked", G_CALLBACK(ajouter_even), NULL);
     g_signal_connect(G_OBJECT(open_tb), "clicked", G_CALLBACK(run_r_script), NULL);
 

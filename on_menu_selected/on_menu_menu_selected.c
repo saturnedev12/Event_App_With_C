@@ -4,12 +4,12 @@
 #include <stdbool.h>
 #include <mysql/mysql.h>
 #include <gtk/gtk.h>
-#include "../headers/ajouter_ticket.h"
+#include "../headers/ajouter_menu.h"
 #include "../headers/initialisation.h"
-#include "../headers/on_ticket_menu_selected.h"
-#include "../headers/get_ticket_data.h"
+#include "../headers/on_menu_menu_selected.h"
+#include "../headers/get_menu_data.h"
 
-void on_ticket_menu_selected(GtkMenuItem *item, gpointer user_data)
+void on_menu_menu_selected(GtkMenuItem *item, gpointer user_data)
 {
 
     // Nettoyer la zone centrale
@@ -38,10 +38,10 @@ void on_ticket_menu_selected(GtkMenuItem *item, gpointer user_data)
     GtkCellRenderer *renderer;
     GtkWidget *headerBox, *toolbar, *treeview;
     // Création d'un tableau de données GTK avec trois colonnes : id, name, age
-    store = gtk_list_store_new(4, G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_STRING);
+    store = gtk_list_store_new(4, G_TYPE_INT, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INT);
 
     // Appel de la fonction pour récupérer les données de la base de données et les ranger dans le tableau de données GTK
-    get_tickets_data(con, store);
+    get_menu_data(con, store);
 
     // Création d'un widget de type TreeView pour afficher le tableau de données
     treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
@@ -55,8 +55,8 @@ void on_ticket_menu_selected(GtkMenuItem *item, gpointer user_data)
     // Ajout des colonnes au TreeView
     gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1, "ID", renderer, "text", 0, NULL);
     gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1, "ID EVENT", renderer, "text", 1, NULL);
-    gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1, "ID USER", renderer, "text", 2, NULL);
-    gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1, "DATE CREATION", renderer, "text", 3, NULL);
+    gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1, "DESCRIPTION", renderer, "text", 2, NULL);
+    gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1, "PRIX", renderer, "text", 3, NULL);
 
     // Création de la boîte à outils
     toolbar = gtk_toolbar_new();
@@ -78,7 +78,7 @@ void on_ticket_menu_selected(GtkMenuItem *item, gpointer user_data)
     gtk_tool_item_set_tooltip_text(new_tb, "Creer");
     gtk_tool_item_set_tooltip_text(del_tb, "Supprimer");
     gtk_tool_item_set_tooltip_text(open_tb, "Statistique");
-    g_signal_connect(G_OBJECT(new_tb), "clicked", G_CALLBACK(ajouter_tickets), NULL);
+    g_signal_connect(G_OBJECT(new_tb), "clicked", G_CALLBACK(ajouter_menu), NULL);
 
     // BOX
     // Ajouter le bouton à la boîte

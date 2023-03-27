@@ -8,20 +8,26 @@
 #include "headers/create_menu.h"
 #include <errno.h>
 #include <unistd.h>
+#include "headers/global.h"
+GtkWidget *window;
+GtkWidget *box_principal;
 
 int main(int argc, char *argv[])
 {
     gtk_init(&argc, &argv);
     // Création de la fenêtre principale
-    GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Menu avec GTK+");
+    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_title(GTK_WINDOW(window), "Gestion d'Evenement");
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
+    // Centrage de la fenêtre
+    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 
     // Création du conteneur principal
-    GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_container_add(GTK_CONTAINER(window), box);
 
     create_menu(box);
+
     // Affichage de la fenêtre
     gtk_widget_show_all(window);
 

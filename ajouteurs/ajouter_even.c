@@ -6,6 +6,8 @@
 #include "../headers/initialisation.h"
 #include "../headers/ajouter_even.h"
 #include "../headers/run_query.h"
+#include "../headers/on_event_menu_selected.h"
+#include "../headers/global.h"
 
 void ajouter_even(GtkWidget *widget, gpointer data)
 {
@@ -99,6 +101,7 @@ void ajouter_even(GtkWidget *widget, gpointer data)
         g_free(var3);
         g_free(var4);
         g_free(var5);
+        on_event_menu_selected(NULL, GTK_WINDOW(box));
     }
 
     /* Destroy the dialog */

@@ -66,31 +66,16 @@ void on_users_menu_selected(GtkMenuItem *item, gpointer user_data)
     GtkToolItem *new_tb = gtk_tool_button_new_from_stock(GTK_STOCK_NEW);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), new_tb, -1);
 
-    GtkToolItem *open_tb = gtk_tool_button_new_from_stock(GTK_STOCK_OPEN);
+    GtkToolItem *del_tb = gtk_tool_button_new_from_stock(GTK_STOCK_DELETE);
+    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), del_tb, -1);
+
+    GtkToolItem *open_tb = gtk_tool_button_new_from_stock(GTK_STOCK_FIND);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), open_tb, -1);
 
-    GtkToolItem *save_tb = gtk_tool_button_new_from_stock(GTK_STOCK_SAVE);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), save_tb, -1);
-
-    GtkToolItem *sep = gtk_separator_tool_item_new();
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), sep, -1);
-
-    GtkToolItem *cut_tb = gtk_tool_button_new_from_stock(GTK_STOCK_CUT);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), cut_tb, -1);
-
-    GtkToolItem *copy_tb = gtk_tool_button_new_from_stock(GTK_STOCK_COPY);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), copy_tb, -1);
-
-    GtkToolItem *paste_tb = gtk_tool_button_new_from_stock(GTK_STOCK_PASTE);
-    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), paste_tb, -1);
-
     // Ajout d'un label pour chaque bouton
-    gtk_tool_item_set_tooltip_text(new_tb, "Nouveau");
-    gtk_tool_item_set_tooltip_text(open_tb, "Ouvrir");
-    gtk_tool_item_set_tooltip_text(save_tb, "Enregistrer");
-    gtk_tool_item_set_tooltip_text(cut_tb, "Couper");
-    gtk_tool_item_set_tooltip_text(copy_tb, "Copier");
-    gtk_tool_item_set_tooltip_text(paste_tb, "Coller");
+    gtk_tool_item_set_tooltip_text(new_tb, "Creer");
+    gtk_tool_item_set_tooltip_text(del_tb, "Supprimer");
+    gtk_tool_item_set_tooltip_text(open_tb, "Statistique");
     g_signal_connect(G_OBJECT(new_tb), "clicked", G_CALLBACK(ajouter_user), NULL);
 
     // BOX
