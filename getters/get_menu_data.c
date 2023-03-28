@@ -1,4 +1,12 @@
-//  SELECT * FROM tickets;
+/**
+ * \file get_menu_data.c
+ * \fn get_menu_data(MYSQL *conn, GtkListStore *store)
+ * \brief Fonction qui permet de recuperer tout les  menus a la base de donnée
+ *
+ * \param conn Objet MySQL
+ * \param store Gtk List Store reprensente les ligne du tableau.
+ * \return retourne rien.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>

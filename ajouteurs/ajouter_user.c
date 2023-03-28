@@ -1,3 +1,12 @@
+/**
+ * \file ajouter_user.c
+ * \fn ajouter_user(GtkWidget *widget, gpointer data)
+ * \brief  Fonction qui permet d'ajouter des utilisateur a la base de donnée
+ *
+ * \param widget Widget parent qui appelle la fonction
+ * \param data gpointer pointant vers l'objet passé en paramettre.
+ * \return retourne rien.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>

@@ -1,3 +1,12 @@
+/**
+ * \file ajouter_even.c
+ * \fn ajouter_even(GtkWidget *widget, gpointer data)
+ * \brief  Fonction qui permet d'ajouter des evenements a la base de donnée
+ *
+ * \param widget Widget parent qui appelle la fonction
+ * \param data gpointer pointant vers l'objet passé en paramettre.
+ * \return retourne rien.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -8,7 +17,16 @@
 #include "../headers/run_query.h"
 #include "../headers/on_event_menu_selected.h"
 #include "../headers/global.h"
-
+void on_calendar_changed(GtkEntry *entry, gpointer user_data)
+{
+    GtkCalendar *calendar = gtk_calendar_new();
+    guint year, month, day;
+    gchar *date;
+    gtk_calendar_get_date(GTK_CALENDAR(calendar), &year, &month, &day);
+    date = g_strdup_printf("%04d-%02d-%02d", year, month + 1, day);
+    g_print("Date sélectionnée : %s\n", date);
+    g_free(date);
+}
 void ajouter_even(GtkWidget *widget, gpointer data)
 {
     // MYSQL *con = (MYSQL *)data;

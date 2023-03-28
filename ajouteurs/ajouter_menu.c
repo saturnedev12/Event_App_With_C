@@ -1,3 +1,12 @@
+/**
+ * \file ajouter_menu.c
+ * \fn ajouter_menu(GtkWidget *widget, gpointer data)
+ * \brief  Fonction qui permet d'ajouter des menus a la base de donnée
+ *
+ * \param widget Widget parent qui appelle la fonction
+ * \param data gpointer pointant vers l'objet passé en paramettre.
+ * \return retourne rien.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>

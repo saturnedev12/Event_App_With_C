@@ -1,3 +1,11 @@
+/**
+ * \file initialisation.c
+ * \fn void initialisation(MYSQL *con)
+ * \brief Fonction de création de la base de donnée et des tables si elles n'existent pas encore.
+ *
+ * \param con Objet MySQL passé en paramettre.
+ * \return retourne rien.
+ */
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>

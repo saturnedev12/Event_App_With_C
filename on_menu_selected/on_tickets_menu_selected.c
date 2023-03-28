@@ -1,4 +1,12 @@
-// TODO menu de l'affichage des ticket
+/**
+ * \file on_tickets_menu_selected.c
+ * \fn on_ticket_menu_selected(GtkMenuItem *item, gpointer user_data)
+ * \brief Fonction qui change l'etat de l'application quand on clique sur un item du menu
+ *
+ * \param item Objet GtkMenuItem representant l'Item sur lequel l'on a cliqué.
+ * \param user_data Objet gpointer pointant sur l'objet passé en paramettre qui est ici le GtkBox princoipal.
+ * \return retourne rien.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>

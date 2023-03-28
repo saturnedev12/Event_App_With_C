@@ -1,6 +1,12 @@
-// TODO Ajouter un ticket
-// INSERT INTO tickets (eventID, userID, date_creation) VALUES (1, 1,CURDATE());
-// UPDATE evenement SET places = places - 1 WHERE id = 1;
+/**
+ * \file ajouter_ticket.c
+ * \fn ajouter_tickets(GtkWidget *widget, gpointer data)
+ * \brief  Fonction qui permet d'ajouter des tickets a la base de donnée
+ *
+ * \param widget Widget parent qui appelle la fonction
+ * \param data gpointer pointant vers l'objet passé en paramettre.
+ * \return retourne rien.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>

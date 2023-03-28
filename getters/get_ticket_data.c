@@ -1,4 +1,12 @@
-//  SELECT * FROM tickets;
+/**
+ * \file get_ticket_data.c
+ * \fn get_event_data(MYSQL *conn, GtkListStore *store)
+ * \brief Fonction qui permet de recuperer tout les tickets de la base de donnée
+ *
+ * \param conn Objet MySQL
+ * \param store Gtk List Store reprensente les ligne du tableau.
+ * \return retourne rien.
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>

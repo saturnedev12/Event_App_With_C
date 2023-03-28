@@ -1,3 +1,10 @@
+/**
+ * \file create_menu.c
+ * \fn create_menu(GtkWidget *box)
+ * \brief Fonction de création du menu de la fenêtre.
+ * \param box GtkBox passé en paramettre.
+ * \return retourne rien.
+ */
 #include <gtk/gtk.h>
 #include <string.h>
 #include "headers/on_event_menu_selected.h"

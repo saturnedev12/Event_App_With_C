@@ -1,3 +1,13 @@
+/**
+ * \file main.c
+ * \brief Application de Gestion d'evenement
+ * \author Ayoua Wognin Saturnin
+ * \version 0.1
+ * \date 28 Mars 2023
+ *
+ * Programme de test pour l'objet de gestion des chaines de caractères Str_t.
+ *
+ */
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
