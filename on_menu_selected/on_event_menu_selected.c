@@ -57,11 +57,6 @@ void run_r_script()
 
         printf("%s\n", row[0]);
         fprintf(fp, "%s,%s\n", row[0], row[1]);
-        // Statis statis;
-        // statis.date = row[0];
-        // statis.nb = atoi(row[1]);
-        // printf("%s,%s\n", stat.date, stat.nb);
-        // fprintf(fp, "%s,%s\n", stat.date, stat.nb);
     }
 
     mysql_free_result(res);

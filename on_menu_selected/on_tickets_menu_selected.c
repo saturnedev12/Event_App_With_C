@@ -16,6 +16,7 @@
 #include "../headers/initialisation.h"
 #include "../headers/on_ticket_menu_selected.h"
 #include "../headers/get_ticket_data.h"
+#include "../headers/on_row_activated.h"
 
 void on_ticket_menu_selected(GtkMenuItem *item, gpointer user_data)
 {
@@ -59,6 +60,7 @@ void on_ticket_menu_selected(GtkMenuItem *item, gpointer user_data)
 
     // Création d'un renderer pour afficher les données dans les colonnes du TreeView
     renderer = gtk_cell_renderer_text_new();
+    g_signal_connect(treeview, "row-activated", G_CALLBACK(on_row_activated), NULL);
 
     // Ajout des colonnes au TreeView
     gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(treeview), -1, "ID", renderer, "text", 0, NULL);
